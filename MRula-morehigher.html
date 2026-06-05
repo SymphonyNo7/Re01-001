@@ -1,0 +1,1487 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>进军奎尔丹纳斯 · M鲁拉 | 高清放大查看 | 三阶段站位</title>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #0a0f1e;
+        color: #e3e6f0;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .container {
+        max-width: 1500px;
+        width: 100%;
+        background: #151e2c;
+        border-radius: 28px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        padding: 20px 24px 30px 24px;
+        border: 1px solid #2d3e5a;
+      }
+      h1 {
+        font-size: 1.8rem;
+        margin: 0 0 6px 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      h1 small {
+        font-size: 0.8rem;
+        background: #2a3b4e;
+        padding: 4px 12px;
+        border-radius: 40px;
+        font-weight: normal;
+      }
+      .sub {
+        border-left: 4px solid #f0a23b;
+        padding-left: 14px;
+        color: #b9c7d9;
+        margin-bottom: 28px;
+        font-size: 0.9rem;
+      }
+      .dashboard {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+      }
+      .control-panel {
+        flex: 1.3;
+        min-width: 320px;
+        background: #0f1622;
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+      }
+      .canvas-area {
+        flex: 2.5;
+        min-width: 540px;
+        background: #0a0f18;
+        border-radius: 28px;
+        padding: 16px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+      }
+      .form-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      input,
+      select,
+      button {
+        background: #1e2a3a;
+        border: 1px solid #2e4057;
+        padding: 10px 16px;
+        border-radius: 60px;
+        color: white;
+        font-size: 0.9rem;
+        outline: none;
+      }
+      button {
+        background: #2c4c6e;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:hover {
+        background: #3e6a93;
+        transform: scale(0.97);
+      }
+      .roster-table {
+        margin: 20px 0;
+        max-height: 360px;
+        overflow-y: auto;
+        border-radius: 18px;
+        background: #0b111c;
+        padding: 4px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 6px 6px;
+        border-bottom: 1px solid #253544;
+      }
+      th {
+        background: #0f1825;
+        color: #cfddee;
+      }
+      .crystal-check {
+        width: 55px;
+        text-align: center;
+      }
+      .crystal-check input {
+        transform: scale(1.1);
+        accent-color: #f0a23b;
+      }
+      .role-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 30px;
+        font-size: 0.7rem;
+        font-weight: bold;
+      }
+      .tank {
+        background: #6f42c1;
+      }
+      .healer {
+        background: #2c9e6e;
+      }
+      .melee {
+        background: #e67e22;
+      }
+      .ranged {
+        background: #2980b9;
+      }
+      .info-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-top: 12px;
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .phase-buttons {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+      .phase-btn {
+        background: #1f3246;
+        padding: 8px 20px;
+        border-radius: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .phase-btn.active {
+        background: #f0a23b;
+        color: #1a1f2c;
+        box-shadow: 0 0 8px #f0a23b;
+      }
+      canvas {
+        background: #19212e;
+        border-radius: 28px;
+        display: block;
+        margin: 0 auto;
+        box-shadow: 0 8px 18px black;
+        width: 100%;
+        height: auto;
+        cursor: crosshair;
+      }
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 20px;
+        justify-content: center;
+        font-size: 0.7rem;
+      }
+      .legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .color-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 14px;
+      }
+      footer {
+        margin-top: 24px;
+        text-align: center;
+        font-size: 0.7rem;
+        opacity: 0.7;
+      }
+      .editor-bar {
+        margin-top: 15px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .warning {
+        background: #7a4a2c;
+        border-radius: 20px;
+        padding: 6px 12px;
+        font-size: 0.7rem;
+        margin-top: 12px;
+        text-align: center;
+      }
+      textarea {
+        width: 100%;
+        background: #0b111c;
+        color: #eee;
+        border: 1px solid #2e4057;
+        border-radius: 16px;
+        padding: 8px;
+        font-size: 0.7rem;
+        font-family: monospace;
+        margin-top: 10px;
+      }
+      .bg-status {
+        font-size: 0.7rem;
+        margin-top: 8px;
+        text-align: center;
+        color: #f0a23b;
+      }
+      .edit-btn {
+        background: none;
+        border: none;
+        color: #88aadd;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 0 4px;
+        margin-right: 6px;
+      }
+      .edit-btn:hover {
+        color: #ffaa66;
+        transform: none;
+        background: none;
+      }
+      .drag-handle {
+        cursor: grab;
+        user-select: none;
+        width: 20px;
+        text-align: center;
+        color: #aaa;
+      }
+      .drag-handle:active {
+        cursor: grabbing;
+      }
+
+      /* 模态框样式 */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+      .modal-content {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+      .modal-content img {
+        max-width: 95%;
+        max-height: 95%;
+        object-fit: contain;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      }
+      .close-modal {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+        z-index: 1001;
+      }
+      .close-modal:hover {
+        color: #bbb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        ⚔️ 进军奎尔丹纳斯 · M鲁拉 ⚔️
+        <small>高清放大查看 | 精确站位 | 三阶段</small>
+      </h1>
+      <div class="sub">
+        🎯 P1.5：坦克强制水晶站内圈 | 手动勾选4名远程/治疗作为外圈水晶<br />
+        🔘 P2-分担射线：按坦克+水晶分组站位<br />
+        🔘 P2-套圈分散：待自定义站位规则
+      </div>
+      <div class="dashboard">
+        <div class="control-panel">
+          <div class="form-row">
+            <input
+              type="text"
+              id="playerName"
+              placeholder="角色名"
+              style="flex: 2"
+            /><select id="playerRole" style="flex: 1">
+              <option value="tank">坦克</option>
+              <option value="healer">治疗</option>
+              <option value="melee">近战</option>
+              <option value="ranged">远程</option></select
+            ><button id="addBtn" style="flex: 0.8">➕ 添加</button>
+          </div>
+          <div class="roster-table">
+            <table id="rosterTable">
+              <thead>
+                <tr>
+                  <th style="width: 30px">🟰</th>
+                  <th>姓名</th>
+                  <th>职业</th>
+                  <th class="crystal-check">💎常态<br />水晶组(P2)</th>
+                  <th class="crystal-check">🌀P1.5<br />水晶组(仅远程/治疗)</th>
+                  <th style="width: 70px">操作</th>
+                </tr>
+              </thead>
+              <tbody id="rosterBody"></tbody>
+            </table>
+          </div>
+          <div class="info-bar">
+            <span>📋 总人数: <strong id="totalCount">0</strong></span
+            ><span id="crystalPhaseInfo"
+              >💎 常态水晶组: <strong id="crystalCount">0</strong>/6</span
+            ><button id="balanceMeleeBtn" style="background: #4a6e4a">
+              ⚖️ P2平衡近战水晶
+            </button>
+          </div>
+          <button
+            id="applyAllocationBtn"
+            style="width: 100%; margin-top: 16px; background: #e67e22"
+          >
+            ⚡ 重新分配站位
+          </button>
+          <div
+            id="allocationWarning"
+            class="warning"
+            style="display: none"
+          ></div>
+          <div class="editor-bar">
+            <button id="uploadBgBtn" style="background: #3a5c6e">
+              📂 选择本地背景图
+            </button>
+            <button id="exportSlotsBtn" style="background: #2c6e5c">
+              📋 导出点位JSON
+            </button>
+            <button id="clearBgBtn" style="background: #6e2c3c">
+              🗑️ 清除背景
+            </button>
+            <button id="toggleCoordsBtn" style="background: #4a6e8c">
+              📐 显示/隐藏坐标
+            </button>
+            <button id="zoomViewBtn" style="background: #8a6e4a">
+              🔍 高清放大查看
+            </button>
+          </div>
+          <div id="bgStatus" class="bg-status">⚡ 请点击按钮上传站位图</div>
+          <textarea
+            id="slotJsonOutput"
+            rows="3"
+            readonly
+            placeholder="点击导出后显示坐标JSON"
+          ></textarea>
+        </div>
+        <div class="canvas-area">
+          <div class="phase-buttons">
+            <button id="phaseP15Btn" class="phase-btn active">🌀 P1.5</button>
+            <button id="phaseP2ShareBtn" class="phase-btn">
+              🎯 P2-分担射线
+            </button>
+            <button id="phaseP2DisperseBtn" class="phase-btn">
+              ⚡ P2-套圈分散
+            </button>
+          </div>
+          <canvas
+            id="bossCanvas"
+            width="800"
+            height="600"
+            style="
+              width: 100%;
+              height: auto;
+              max-width: 800px;
+              aspect-ratio: 800/600;
+            "
+          ></canvas>
+          <div class="legend">
+            <span
+              ><div class="color-dot" style="background: #aa6fdf"></div>
+              坦克</span
+            ><span
+              ><div class="color-dot" style="background: #2ecc71"></div>
+              治疗</span
+            ><span
+              ><div class="color-dot" style="background: #f39c12"></div>
+              近战</span
+            ><span
+              ><div class="color-dot" style="background: #3498db"></div>
+              远程</span
+            ><span
+              ><div
+                class="color-dot"
+                style="background: #f1c40f; border: 2px solid gold"
+              ></div>
+              💎 水晶组(当前阶段)</span
+            ><span
+              ><div class="color-dot" style="background: #e74c3c"></div>
+              🧨 BOSS</span
+            ><span
+              ><div class="color-dot" style="background: #ff8800"></div>
+              🟠 可拖拽坑位(编号1-20)</span
+            >
+          </div>
+          <div style="font-size: 0.7rem; text-align: center; margin-top: 10px">
+            P1.5外圈水晶固定坐标：位1(220,220) 位2(261,466) 位3(541,466)
+            位4(606,222)<br />
+            P2阶段坑位可拖拽调整，套圈分散规则可自行修改代码中的分配逻辑。
+          </div>
+        </div>
+      </div>
+      <footer>
+        P1.5: 只有远程/治疗可勾选水晶组，近战无法勾选。P2:
+        点击“平衡近战水晶”自动将超出5个的近战设为水晶。
+      </footer>
+    </div>
+
+    <!-- 模态框 -->
+    <div id="imageModal" class="modal">
+      <span class="close-modal">&times;</span>
+      <div class="modal-content">
+        <img id="fullImage" alt="站位图放大" />
+      </div>
+    </div>
+
+    <script>
+      // ---------- 精确的坑位定义 ----------
+      let positionSlots = {
+        p1_5: [
+          { x: 370, y: 196, rolePreference: "tank" }, // 0
+          { x: 430, y: 196, rolePreference: "tank" }, // 1
+          { x: 220, y: 220, rolePreference: "crystal" }, // 2 外圈水晶1
+          { x: 261, y: 466, rolePreference: "crystal" }, // 3 外圈水晶2
+          { x: 541, y: 466, rolePreference: "crystal" }, // 4 外圈水晶3
+          { x: 606, y: 222, rolePreference: "crystal" }, // 5 外圈水晶4
+          { x: 524, y: 300, rolePreference: "healer" }, // 6
+          { x: 284, y: 301, rolePreference: "healer" }, // 7
+          { x: 600, y: 396, rolePreference: "healer" }, // 8
+          { x: 210, y: 390, rolePreference: "healer" }, // 9
+          { x: 310, y: 232, rolePreference: "melee" }, // 10
+          { x: 307, y: 363, rolePreference: "melee" }, // 11
+          { x: 360, y: 410, rolePreference: "melee" }, // 12
+          { x: 497, y: 229, rolePreference: "melee" }, // 13
+          { x: 495, y: 371, rolePreference: "melee" }, // 14
+          { x: 445, y: 407, rolePreference: "melee" }, // 15
+          { x: 180, y: 300, rolePreference: "ranged" }, // 16
+          { x: 622, y: 315, rolePreference: "ranged" }, // 17
+          { x: 354, y: 510, rolePreference: "ranged" }, // 18
+          { x: 464, y: 511, rolePreference: "ranged" }, // 19
+        ],
+        p2_share: [
+          { x: 400, y: 194, rolePreference: "tank" },
+          { x: 400, y: 227, rolePreference: "tank" },
+          { x: 325, y: 300, rolePreference: "melee" },
+          { x: 291, y: 300, rolePreference: "melee" },
+          { x: 257, y: 300, rolePreference: "melee" },
+          { x: 221, y: 300, rolePreference: "melee" },
+          { x: 188, y: 300, rolePreference: "melee" },
+          { x: 400, y: 375, rolePreference: "healer" },
+          { x: 400, y: 407, rolePreference: "healer" },
+          { x: 400, y: 441, rolePreference: "healer" },
+          { x: 400, y: 475, rolePreference: "healer" },
+          { x: 474, y: 300, rolePreference: "ranged" },
+          { x: 509, y: 300, rolePreference: "ranged" },
+          { x: 544, y: 300, rolePreference: "ranged" },
+          { x: 400, y: 97, rolePreference: "crystal" },
+          { x: 400, y: 129, rolePreference: "crystal" },
+          { x: 400, y: 161, rolePreference: "crystal" },
+          { x: 577, y: 300, rolePreference: "crystal" },
+          { x: 612, y: 300, rolePreference: "crystal" },
+          { x: 400, y: 511, rolePreference: "crystal" },
+        ],
+        p2_disperse: [
+          { x: 442, y: 358, rolePreference: "inner" },
+          { x: 453, y: 251, rolePreference: "inner" },
+          { x: 474, y: 310, rolePreference: "inner" },
+          { x: 402, y: 226, rolePreference: "inner" },
+          { x: 340, y: 309, rolePreference: "inner" },
+          { x: 348, y: 251, rolePreference: "inner" },
+          { x: 367, y: 359, rolePreference: "inner" },
+          { x: 366, y: 164, rolePreference: "outer" },
+          { x: 441, y: 164, rolePreference: "outer" },
+          { x: 408, y: 440, rolePreference: "outer" },
+          { x: 528, y: 373, rolePreference: "outer" },
+          { x: 553, y: 310, rolePreference: "outer" },
+          { x: 477, y: 419, rolePreference: "outer" },
+          { x: 333, y: 423, rolePreference: "outer" },
+          { x: 304, y: 194, rolePreference: "outer" },
+          { x: 251, y: 307, rolePreference: "outer" },
+          { x: 278, y: 373, rolePreference: "outer" },
+          { x: 261, y: 245, rolePreference: "outer" },
+          { x: 540, y: 248, rolePreference: "outer" },
+          { x: 503, y: 198, rolePreference: "outer" },
+        ],
+      };
+      const P15_CRYSTAL_SLOT_INDICES = [2, 3, 4, 5];
+
+      // 数据模型
+      let roster = [];
+      let currentPhase = "p1_5"; // 可选: "p1_5", "p2_share", "p2_disperse"
+      let currentAllocation = [];
+      let nextId = 100;
+      let dragEnabled = false,
+        dragSlotIndex = -1,
+        dragPhase = null;
+      let canvas = document.getElementById("bossCanvas");
+      let ctx = canvas.getContext("2d");
+      let backgroundImageElement = null;
+      let backgroundImageData = null;
+      let showCoords = false;
+      let sortable = null;
+
+      // 辅助函数
+      function getRoleName(role) {
+        const m = {
+          tank: "坦克",
+          healer: "治疗",
+          melee: "近战",
+          ranged: "远程",
+        };
+        return m[role];
+      }
+      function escapeHtml(s) {
+        return s.replace(
+          /[&<>]/g,
+          (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[m],
+        );
+      }
+      function renderTable() {
+        const tbody = document.getElementById("rosterBody");
+        tbody.innerHTML = "";
+        roster.forEach((p) => {
+          const isRangedOrHealer = p.role === "ranged" || p.role === "healer";
+          const tr = document.createElement("tr");
+          tr.setAttribute("data-id", p.id);
+          tr.innerHTML = `<td class="drag-handle" style="cursor:grab; text-align:center;">⋮⋮</td>
+                      <td class="player-name-cell" data-id="${p.id}">${escapeHtml(p.name)}</td>
+                      <td><span class="role-badge ${p.role}">${getRoleName(p.role)}</span></td>
+                      <td class="crystal-check"><input type="checkbox" class="crystalCheckbox" data-id="${p.id}" ${p.isCrystal ? "checked" : ""}></td>
+                      <td class="crystal-check"><input type="checkbox" class="crystalP15Checkbox" data-id="${p.id}" ${p.isCrystalP15 ? "checked" : ""} ${!isRangedOrHealer ? "disabled" : ""}></td>
+                      <td>
+                       <button class="edit-name-btn" data-id="${p.id}" style="background:none; border:none; color:#88aadd;" title="编辑名字">✏️</button>
+                       <button class="edit-role-btn" data-id="${p.id}" style="background:none; border:none; color:#88dd88;" title="修改职责">🎭</button>
+                       <button class="delBtn" data-id="${p.id}" style="background:#4a2a34; padding:2px 8px;">❌</button>
+                      </td>`;
+          tbody.appendChild(tr);
+        });
+        bindTableEvents();
+        if (sortable) sortable.destroy();
+        sortable = new Sortable(document.getElementById("rosterBody"), {
+          handle: ".drag-handle",
+          animation: 150,
+          onEnd: () => {
+            const newOrder = [];
+            document.querySelectorAll("#rosterBody tr").forEach((row) => {
+              const id = parseInt(
+                row.querySelector(".edit-name-btn")?.dataset.id ||
+                  row.querySelector(".player-name-cell")?.dataset.id,
+              );
+              const pl = roster.find((p) => p.id === id);
+              if (pl) newOrder.push(pl);
+            });
+            if (newOrder.length === roster.length) roster = newOrder;
+            refreshAllocationAndDraw();
+          },
+        });
+      }
+      function bindTableEvents() {
+        document.querySelectorAll(".crystalCheckbox").forEach((cb) => {
+          cb.removeEventListener("change", handleCrystalChange);
+          cb.addEventListener("change", handleCrystalChange);
+        });
+        document.querySelectorAll(".crystalP15Checkbox").forEach((cb) => {
+          cb.removeEventListener("change", handleCrystalP15Change);
+          cb.addEventListener("change", handleCrystalP15Change);
+        });
+        document.querySelectorAll(".delBtn").forEach((btn) => {
+          btn.removeEventListener("click", handleDelete);
+          btn.addEventListener("click", handleDelete);
+        });
+        document.querySelectorAll(".edit-name-btn").forEach((btn) => {
+          btn.removeEventListener("click", handleEditName);
+          btn.addEventListener("click", handleEditName);
+        });
+        document.querySelectorAll(".edit-role-btn").forEach((btn) => {
+          btn.removeEventListener("click", handleEditRole);
+          btn.addEventListener("click", handleEditRole);
+        });
+      }
+      function handleCrystalChange(e) {
+        const id = parseInt(e.target.dataset.id);
+        const p = roster.find((p) => p.id === id);
+        if (p) {
+          if (e.target.checked) {
+            if (roster.filter((p) => p.isCrystal).length < 6)
+              p.isCrystal = true;
+            else {
+              e.target.checked = false;
+              alert("常态水晶组最多6人！");
+            }
+          } else p.isCrystal = false;
+          updateUI();
+          refreshAllocationAndDraw();
+        }
+      }
+      function handleCrystalP15Change(e) {
+        const id = parseInt(e.target.dataset.id);
+        const p = roster.find((p) => p.id === id);
+        if (p) {
+          if (e.target.checked) {
+            if (roster.filter((p) => p.isCrystalP15).length < 4)
+              p.isCrystalP15 = true;
+            else {
+              e.target.checked = false;
+              alert("P1.5水晶组最多4人！");
+            }
+          } else p.isCrystalP15 = false;
+          updateUI();
+          refreshAllocationAndDraw();
+        }
+      }
+      function handleDelete(e) {
+        const id = parseInt(e.currentTarget.dataset.id);
+        roster = roster.filter((p) => p.id !== id);
+        updateUI();
+        refreshAllocationAndDraw();
+      }
+      function handleEditName(e) {
+        const id = parseInt(e.currentTarget.dataset.id);
+        const p = roster.find((p) => p.id === id);
+        if (p) {
+          const newName = prompt("新名字", p.name);
+          if (newName && newName.trim()) {
+            p.name = newName.trim();
+            updateUI();
+            refreshAllocationAndDraw();
+          }
+        }
+      }
+      function handleEditRole(e) {
+        const id = parseInt(e.currentTarget.dataset.id);
+        const player = roster.find((p) => p.id === id);
+        if (player) {
+          const newRole = prompt(
+            "选择新职责：\n坦克 - 输入 tank\n治疗 - 输入 healer\n近战 - 输入 melee\n远程 - 输入 ranged",
+            player.role,
+          );
+          if (
+            newRole &&
+            ["tank", "healer", "melee", "ranged"].includes(newRole)
+          ) {
+            player.role = newRole;
+            if (
+              player.isCrystalP15 &&
+              player.role !== "ranged" &&
+              player.role !== "healer"
+            ) {
+              player.isCrystalP15 = false;
+              alert("注意：该职业不能作为P1.5水晶组，已自动取消勾选。");
+            }
+            updateUI();
+            refreshAllocationAndDraw();
+          } else if (newRole) {
+            alert("无效的职责，请输入 tank / healer / melee / ranged");
+          }
+        }
+      }
+      function updateUI() {
+        renderTable();
+        document.getElementById("totalCount").innerText = roster.length;
+        updateCrystalCountDisplay();
+      }
+      function updateCrystalCountDisplay() {
+        const norm = roster.filter((p) => p.isCrystal).length;
+        const p15 = roster.filter((p) => p.isCrystalP15).length;
+        if (currentPhase === "p1_5")
+          document.getElementById("crystalPhaseInfo").innerHTML =
+            `🌀 P1.5水晶组(坦克2+手动): <strong>${2 + p15}</strong>/6 (手动最多4)`;
+        else
+          document.getElementById("crystalPhaseInfo").innerHTML =
+            `💎 常态水晶组: <strong>${norm}</strong>/6`;
+      }
+      function balanceMeleeForP2() {
+        if (currentPhase !== "p2_share" && currentPhase !== "p2_disperse") {
+          alert("请在P2阶段使用");
+          return;
+        }
+        const melee = roster.filter((p) => p.role === "melee");
+        const cnt = melee.length;
+        if (cnt <= 5) {
+          alert(`近战${cnt}人，未超5人`);
+          return;
+        }
+        const excess = cnt - 5;
+        const already = melee.filter((p) => p.isCrystal).length;
+        const need = excess - already;
+        if (need <= 0) {
+          alert(`已有${already}近战水晶，满足要求`);
+          return;
+        }
+        const candidates = melee.filter((p) => !p.isCrystal);
+        for (let i = 0; i < need && i < candidates.length; i++)
+          candidates[i].isCrystal = true;
+        updateUI();
+        refreshAllocationAndDraw();
+        alert(`已将${need}个近战设为水晶`);
+      }
+
+      // ---------- 核心分配算法 ----------
+      function allocateToFixedSlots(phase, players) {
+        const slots = positionSlots[phase];
+        if (players.length !== 20) {
+          document.getElementById("allocationWarning").innerText =
+            `⚠️ 人数${players.length}/20，请凑齐20人完美分配`;
+          document.getElementById("allocationWarning").style.display = "block";
+        } else {
+          document.getElementById("allocationWarning").style.display = "none";
+        }
+        let slotCopy = slots.map((s, idx) => ({ ...s, idx, used: false }));
+        let assignments = [],
+          unmatched = [];
+        function findSlot(pref, exclude = []) {
+          return slotCopy.findIndex(
+            (s) =>
+              !s.used && s.rolePreference === pref && !exclude.includes(s.idx),
+          );
+        }
+
+        // ---------- P1.5 原有逻辑 ----------
+        if (phase === "p1_5") {
+          const tanks = players.filter((p) => p.role === "tank");
+          for (let p of tanks) {
+            let idx = findSlot("tank");
+            if (idx !== -1) {
+              let s = slotCopy[idx];
+              s.used = true;
+              assignments.push({ player: p, x: s.x, y: s.y });
+            } else unmatched.push(p);
+          }
+          const manual = players.filter(
+            (p) => p.isCrystalP15 === true && p.role !== "tank",
+          );
+          for (
+            let i = 0;
+            i < manual.length && i < P15_CRYSTAL_SLOT_INDICES.length;
+            i++
+          ) {
+            let idx = P15_CRYSTAL_SLOT_INDICES[i];
+            if (!slotCopy[idx].used) {
+              let s = slotCopy[idx];
+              s.used = true;
+              assignments.push({ player: manual[i], x: s.x, y: s.y });
+            } else {
+              let alt = findSlot("crystal", P15_CRYSTAL_SLOT_INDICES);
+              if (alt !== -1) {
+                let s = slotCopy[alt];
+                s.used = true;
+                assignments.push({ player: manual[i], x: s.x, y: s.y });
+              } else unmatched.push(manual[i]);
+            }
+          }
+          // 治疗职业（非水晶）优先分配到 healer 坑位
+          const healers = players.filter(
+            (p) =>
+              p.role === "healer" &&
+              !assignments.some((a) => a.player.id === p.id),
+          );
+          for (let p of healers) {
+            let idx = findSlot("healer");
+            if (idx !== -1) {
+              let s = slotCopy[idx];
+              s.used = true;
+              assignments.push({ player: p, x: s.x, y: s.y });
+            } else {
+              unmatched.push(p);
+            }
+          }
+          const remaining = players.filter(
+            (p) =>
+              !assignments.some((a) => a.player.id === p.id) &&
+              p.role !== "tank" &&
+              p.role !== "healer",
+          );
+          for (let p of remaining) {
+            let pref = p.role === "melee" ? "melee" : "ranged";
+            let idx = findSlot(pref);
+            if (idx !== -1) {
+              let s = slotCopy[idx];
+              s.used = true;
+              assignments.push({ player: p, x: s.x, y: s.y });
+            } else unmatched.push(p);
+          }
+          let free = slotCopy.filter((s) => !s.used);
+          for (let i = 0; i < Math.min(unmatched.length, free.length); i++)
+            assignments.push({
+              player: unmatched[i],
+              x: free[i].x,
+              y: free[i].y,
+            });
+        }
+        // ---------- P2-分担射线 (原P2逻辑) ----------
+        else if (phase === "p2_share") {
+          // 统计各类坑位的数量
+          const tankSlots = slotCopy.filter((s) => s.rolePreference === "tank");
+          const healerSlots = slotCopy.filter(
+            (s) => s.rolePreference === "healer",
+          );
+          const meleeSlots = slotCopy.filter(
+            (s) => s.rolePreference === "melee",
+          );
+          const rangedSlots = slotCopy.filter(
+            (s) => s.rolePreference === "ranged",
+          );
+          const crystalSlots = slotCopy.filter(
+            (s) => s.rolePreference === "crystal",
+          );
+
+          // 分组玩家：不拿水晶的按职业分，拿水晶的统一放一组
+          const nonCrystalTanks = players.filter(
+            (p) => p.role === "tank" && !p.isCrystal,
+          );
+          const nonCrystalHealers = players.filter(
+            (p) => p.role === "healer" && !p.isCrystal,
+          );
+          const nonCrystalMelees = players.filter(
+            (p) => p.role === "melee" && !p.isCrystal,
+          );
+          const nonCrystalRanged = players.filter(
+            (p) => p.role === "ranged" && !p.isCrystal,
+          );
+          const crystalPlayers = players.filter((p) => p.isCrystal);
+
+          // 辅助分配函数
+          function assignGroup(groupPlayers, targetSlots, preferenceName) {
+            for (
+              let i = 0;
+              i < groupPlayers.length && i < targetSlots.length;
+              i++
+            ) {
+              let slot = targetSlots[i];
+              if (!slot.used) {
+                slot.used = true;
+                assignments.push({
+                  player: groupPlayers[i],
+                  x: slot.x,
+                  y: slot.y,
+                });
+              } else {
+                // 如果目标坑位已被占用，则尝试找同类未用的坑位（理论上不会）
+                let freeIdx = slotCopy.findIndex(
+                  (s) => !s.used && s.rolePreference === preferenceName,
+                );
+                if (freeIdx !== -1) {
+                  let s = slotCopy[freeIdx];
+                  s.used = true;
+                  assignments.push({ player: groupPlayers[i], x: s.x, y: s.y });
+                } else {
+                  unmatched.push(groupPlayers[i]);
+                }
+              }
+            }
+            // 如果玩家数量多于坑位数量，多余的放入unmatched
+            if (groupPlayers.length > targetSlots.length) {
+              for (let i = targetSlots.length; i < groupPlayers.length; i++) {
+                unmatched.push(groupPlayers[i]);
+              }
+            }
+          }
+
+          // 1. 分配不拿水晶的坦克（必须有足够坦克坑位）
+          assignGroup(nonCrystalTanks, tankSlots, "tank");
+          // 2. 分配不拿水晶的治疗
+          assignGroup(nonCrystalHealers, healerSlots, "healer");
+          // 3. 分配不拿水晶的近战
+          assignGroup(nonCrystalMelees, meleeSlots, "melee");
+          // 4. 分配不拿水晶的远程
+          assignGroup(nonCrystalRanged, rangedSlots, "ranged");
+
+          // 5. 剩下的坑位（所有未使用的坑位，包括crystal、以及可能剩余的其他坑位）
+          let remainingSlots = slotCopy.filter((s) => !s.used);
+          // 优先使用crystal坑位，再按任意顺序
+          let crystalRemaining = remainingSlots.filter(
+            (s) => s.rolePreference === "crystal",
+          );
+          let otherRemaining = remainingSlots.filter(
+            (s) => s.rolePreference !== "crystal",
+          );
+          let orderedRemaining = [...crystalRemaining, ...otherRemaining];
+
+          // 6. 分配所有拿水晶的玩家（包括可能是坦克/治疗/近战/远程，但坦克理论上不会拿水晶，不过无妨）
+          for (
+            let i = 0;
+            i < crystalPlayers.length && i < orderedRemaining.length;
+            i++
+          ) {
+            let slot = orderedRemaining[i];
+            slot.used = true;
+            assignments.push({
+              player: crystalPlayers[i],
+              x: slot.x,
+              y: slot.y,
+            });
+          }
+          // 如果还有多余的水晶玩家没有坑位，加入unmatched
+          if (crystalPlayers.length > orderedRemaining.length) {
+            for (
+              let i = orderedRemaining.length;
+              i < crystalPlayers.length;
+              i++
+            ) {
+              unmatched.push(crystalPlayers[i]);
+            }
+          }
+
+          // 7. 最后，处理所有unmatched（理论不应发生，但保险）
+          let finalFree = slotCopy.filter((s) => !s.used);
+          for (
+            let i = 0;
+            i < Math.min(unmatched.length, finalFree.length);
+            i++
+          ) {
+            assignments.push({
+              player: unmatched[i],
+              x: finalFree[i].x,
+              y: finalFree[i].y,
+            });
+          }
+        }
+        // ---------- P2-套圈分散 (暂时复用分担射线的分配逻辑，你可以根据需要重写) ----------
+        else if (phase === "p2_disperse") {
+          // 复制玩家列表
+          let playersCopy = players.map((p) => ({ ...p }));
+
+          // 1. 确定内圈7人：6个水晶 + 1个不拿水晶的近战
+          const crystalPlayers = playersCopy.filter(
+            (p) => p.isCrystal === true,
+          );
+          // 非水晶近战
+          const nonCrystalMelee = playersCopy.filter(
+            (p) => p.role === "melee" && !p.isCrystal,
+          );
+          let innerGroup = [];
+          // 先取水晶（最多6个）
+          innerGroup.push(...crystalPlayers.slice(0, 6));
+          // 再取一个非水晶近战（如果没有，则取任意非水晶职业，但根据需求应该是近战）
+          let extraMelee = nonCrystalMelee[0];
+          if (extraMelee && innerGroup.length < 7) {
+            innerGroup.push(extraMelee);
+          } else if (innerGroup.length < 7) {
+            // 如果没有非水晶近战，则从其他非水晶中补一个（比如远程或治疗）
+            const anyNonCrystal = playersCopy.find(
+              (p) => !p.isCrystal && p.role !== "tank",
+            );
+            if (anyNonCrystal) innerGroup.push(anyNonCrystal);
+          }
+          // 确保内圈正好7人（如果不足，用剩余的人补，但理论上不会）
+          const remainingPlayers = playersCopy.filter(
+            (p) => !innerGroup.includes(p),
+          );
+
+          // 2. 内圈坑位列表（从 positionSlots.p2_disperse 中取出前7个，即 rolePreference 为 "inner" 的）
+          const allSlots = positionSlots.p2_disperse;
+          const innerSlots = allSlots.filter(
+            (s) => s.rolePreference === "inner",
+          );
+          const outerSlots = allSlots.filter(
+            (s) => s.rolePreference === "outer",
+          );
+
+          // 3. 分配内圈玩家到内圈坑位（按顺序）
+          let assignments = [];
+          for (let i = 0; i < innerGroup.length && i < innerSlots.length; i++) {
+            assignments.push({
+              player: innerGroup[i],
+              x: innerSlots[i].x,
+              y: innerSlots[i].y,
+            });
+          }
+          // 如果内圈玩家多于坑位，多余的加入外圈分配池
+          let outerGroup = remainingPlayers;
+          if (innerGroup.length > innerSlots.length) {
+            outerGroup = outerGroup.concat(innerGroup.slice(innerSlots.length));
+          }
+
+          // 4. 分配外圈玩家到外圈坑位（按顺序）
+          for (let i = 0; i < outerGroup.length && i < outerSlots.length; i++) {
+            assignments.push({
+              player: outerGroup[i],
+              x: outerSlots[i].x,
+              y: outerSlots[i].y,
+            });
+          }
+
+          // 5. 容错：如果坑位不够（理论上20个坑位正好），把剩余玩家随意放到剩余坑位
+          const allUsedSlots = [
+            ...innerSlots.slice(0, innerGroup.length),
+            ...outerSlots.slice(0, outerGroup.length),
+          ];
+          const unusedSlots = allSlots.filter((s) => !allUsedSlots.includes(s));
+          const leftover = players.filter(
+            (p) => !assignments.some((a) => a.player.id === p.id),
+          );
+          for (
+            let i = 0;
+            i < Math.min(leftover.length, unusedSlots.length);
+            i++
+          ) {
+            assignments.push({
+              player: leftover[i],
+              x: unusedSlots[i].x,
+              y: unusedSlots[i].y,
+            });
+          }
+
+          return assignments.slice(0, 20);
+        }
+        return assignments.slice(0, players.length);
+      }
+
+      // 绘图相关函数保持不变
+      function drawBackgroundToContext(targetCtx, width, height, imgElement) {
+        if (imgElement && imgElement.complete && imgElement.naturalWidth > 0) {
+          try {
+            targetCtx.drawImage(imgElement, 0, 0, width, height);
+            return true;
+          } catch (e) {}
+        }
+        targetCtx.fillStyle = "#19212e";
+        targetCtx.fillRect(0, 0, width, height);
+        targetCtx.strokeStyle = "#3a4a66";
+        targetCtx.lineWidth = 1;
+        for (let i = 0; i < width; i += 40) {
+          targetCtx.beginPath();
+          targetCtx.moveTo(i, 0);
+          targetCtx.lineTo(i, height);
+          targetCtx.stroke();
+          targetCtx.beginPath();
+          targetCtx.moveTo(0, i);
+          targetCtx.lineTo(width, i);
+          targetCtx.stroke();
+        }
+        targetCtx.fillStyle = "#aaa";
+        targetCtx.font = "14px sans-serif";
+        targetCtx.fillText("未加载背景图 - 点击「选择本地背景图」", 250, 50);
+        return false;
+      }
+      function drawCanvasToContext(
+        targetCtx,
+        targetWidth,
+        targetHeight,
+        phase,
+        allocation,
+        slots,
+        showCoordsFlag,
+      ) {
+        const scaleX = targetWidth / 800;
+        const scaleY = targetHeight / 600;
+        drawBackgroundToContext(
+          targetCtx,
+          targetWidth,
+          targetHeight,
+          backgroundImageElement,
+        );
+        targetCtx.save();
+        targetCtx.globalAlpha = 0.7;
+        targetCtx.beginPath();
+        targetCtx.arc(400 * scaleX, 300 * scaleY, 55 * scaleX, 0, 2 * Math.PI);
+        targetCtx.fillStyle = "#6a1e2caa";
+        targetCtx.fill();
+        targetCtx.strokeStyle = "#f39c12";
+        targetCtx.lineWidth = 3 * scaleX;
+        targetCtx.stroke();
+        targetCtx.globalAlpha = 1;
+        targetCtx.fillStyle = "#ffb347";
+        targetCtx.font = `bold ${18 * scaleX}px 'Segoe UI'`;
+        targetCtx.textAlign = "center";
+        targetCtx.textBaseline = "middle";
+        targetCtx.fillText("💀 BOSS", 400 * scaleX, 300 * scaleY);
+        if (slots) {
+          for (let i = 0; i < slots.length; i++) {
+            let s = slots[i];
+            let cx = s.x * scaleX;
+            let cy = s.y * scaleY;
+            let radius = 12 * scaleX;
+            targetCtx.beginPath();
+            targetCtx.arc(cx, cy, radius, 0, 2 * Math.PI);
+            targetCtx.fillStyle = "#ff8800cc";
+            targetCtx.fill();
+            targetCtx.strokeStyle = "white";
+            targetCtx.lineWidth = 1.5 * scaleX;
+            targetCtx.stroke();
+            targetCtx.fillStyle = "white";
+            targetCtx.font = `bold ${10 * scaleX}px monospace`;
+            targetCtx.fillText(i + 1, cx, cy);
+            if (showCoordsFlag) {
+              targetCtx.fillStyle = "#cccccc";
+              targetCtx.font = `${8 * scaleX}px monospace`;
+              targetCtx.fillText(
+                `(${Math.round(s.x)},${Math.round(s.y)})`,
+                cx,
+                cy + 18 * scaleY,
+              );
+            }
+          }
+        }
+        for (let a of allocation) {
+          let p = a.player;
+          let color =
+            p.role === "tank"
+              ? "#aa6fdf"
+              : p.role === "healer"
+                ? "#2ecc71"
+                : p.role === "melee"
+                  ? "#f39c12"
+                  : "#3498db";
+          let isCrystal =
+            phase === "p1_5"
+              ? p.role === "tank" || p.isCrystalP15 === true
+              : p.isCrystal === true;
+          // 水晶不改变颜色，保持角色色（根据用户要求）
+          let cx = a.x * scaleX;
+          let cy = a.y * scaleY;
+          let radius = 16 * scaleX;
+          targetCtx.beginPath();
+          targetCtx.arc(cx, cy, radius, 0, 2 * Math.PI);
+          targetCtx.fillStyle = color;
+          targetCtx.shadowBlur = 4 * scaleX;
+          targetCtx.fill();
+          targetCtx.strokeStyle = "white";
+          targetCtx.lineWidth = 1.5 * scaleX;
+          targetCtx.stroke();
+          targetCtx.fillStyle = "#111";
+          targetCtx.font = `bold ${11 * scaleX}px 'Segoe UI'`;
+          targetCtx.fillText(p.name.substring(0, 8), cx, cy);
+          if (isCrystal) {
+            targetCtx.fillStyle = "#ffd966";
+            targetCtx.fillText("💎", cx + 12 * scaleX, cy - 6 * scaleY);
+          }
+        }
+        targetCtx.restore();
+      }
+      function drawBackground() {
+        drawBackgroundToContext(ctx, 800, 600, backgroundImageElement);
+      }
+      function drawCanvas() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, 800, 600);
+        drawBackground();
+        const slots = positionSlots[currentPhase];
+        drawCanvasToContext(
+          ctx,
+          800,
+          600,
+          currentPhase,
+          currentAllocation,
+          slots,
+          showCoords,
+        );
+      }
+
+      // 拖拽事件
+      function handleMouseDown(e) {
+        const rect = canvas.getBoundingClientRect();
+        const sx = canvas.width / rect.width,
+          sy = canvas.height / rect.height;
+        const mx = (e.clientX - rect.left) * sx,
+          my = (e.clientY - rect.top) * sy;
+        const slots = positionSlots[currentPhase];
+        for (let i = 0; i < slots.length; i++) {
+          if (Math.hypot(mx - slots[i].x, my - slots[i].y) < 15) {
+            dragEnabled = true;
+            dragSlotIndex = i;
+            dragPhase = currentPhase;
+            e.preventDefault();
+            canvas.style.cursor = "grabbing";
+            break;
+          }
+        }
+      }
+      function handleMouseMove(e) {
+        if (!dragEnabled || dragSlotIndex === -1 || dragPhase !== currentPhase)
+          return;
+        const rect = canvas.getBoundingClientRect();
+        const sx = canvas.width / rect.width,
+          sy = canvas.height / rect.height;
+        let x = (e.clientX - rect.left) * sx,
+          y = (e.clientY - rect.top) * sy;
+        x = Math.min(780, Math.max(20, x));
+        y = Math.min(580, Math.max(20, y));
+        positionSlots[currentPhase][dragSlotIndex].x = x;
+        positionSlots[currentPhase][dragSlotIndex].y = y;
+        refreshAllocationAndDraw();
+      }
+      function handleMouseUp() {
+        dragEnabled = false;
+        dragSlotIndex = -1;
+        canvas.style.cursor = "crosshair";
+      }
+      canvas.addEventListener("mousedown", handleMouseDown);
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+
+      function refreshAllocationAndDraw() {
+        updateCrystalCountDisplay();
+        currentAllocation = allocateToFixedSlots(currentPhase, roster);
+        drawCanvas();
+      }
+
+      function setPhase(phase) {
+        currentPhase = phase;
+        document
+          .getElementById("phaseP15Btn")
+          .classList.toggle("active", phase === "p1_5");
+        document
+          .getElementById("phaseP2ShareBtn")
+          .classList.toggle("active", phase === "p2_share");
+        document
+          .getElementById("phaseP2DisperseBtn")
+          .classList.toggle("active", phase === "p2_disperse");
+        refreshAllocationAndDraw();
+      }
+
+      function exportSlots() {
+        const data = positionSlots[currentPhase];
+        document.getElementById("slotJsonOutput").value = JSON.stringify(
+          data,
+          null,
+          2,
+        );
+        alert("已导出当前阶段点位JSON");
+      }
+
+      function uploadBackground() {
+        const inp = document.createElement("input");
+        inp.type = "file";
+        inp.accept = "image/*";
+        inp.onchange = (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            const dataURL = ev.target.result;
+            localStorage.setItem("MruLa_BgImage", dataURL);
+            const img = new Image();
+            img.onload = () => {
+              backgroundImageElement = img;
+              backgroundImageData = dataURL;
+              refreshAllocationAndDraw();
+            };
+            img.src = dataURL;
+            document.getElementById("bgStatus").innerHTML = "✅ 背景图已保存";
+          };
+          reader.readAsDataURL(file);
+        };
+        inp.click();
+      }
+
+      function loadStoredBackground() {
+        const img = new Image();
+        img.onload = () => {
+          backgroundImageElement = img;
+          refreshAllocationAndDraw();
+          document.getElementById("bgStatus").innerHTML =
+            "✅ 已加载本地背景图 map.jpg";
+        };
+        img.onerror = () => {
+          console.warn("无法加载 map.jpg，请确保文件在同目录下");
+          document.getElementById("bgStatus").innerHTML =
+            "❌ 未找到 map.jpg，请将图片放在同目录下";
+          refreshAllocationAndDraw(); // 无背景则绘制网格
+        };
+        img.src = "map.jpg"; // 同目录下的图片文件
+      }
+
+      // function loadStoredBackground() {
+      //   const stored = localStorage.getItem("MruLa_BgImage");
+      //   if (stored) {
+      //     const img = new Image();
+      //     img.onload = () => {
+      //       backgroundImageElement = img;
+      //       refreshAllocationAndDraw();
+      //     };
+      //     img.src = stored;
+      //     document.getElementById("bgStatus").innerHTML = "✅ 已加载上次背景";
+      //   } else refreshAllocationAndDraw();
+      // }
+
+      // function clearBackground() {
+      //   localStorage.removeItem("MruLa_BgImage");
+      //   backgroundImageElement = null;
+      //   backgroundImageData = null;
+      //   document.getElementById("bgStatus").innerHTML = "🗑️ 背景已清除";
+      //   refreshAllocationAndDraw();
+      // }
+
+      function initDemoRoster() {
+        roster = [];
+        const names = [
+          "Tank1",
+          "Tank2",
+          "Healer1",
+          "Healer2",
+          "Healer3",
+          "Healer4",
+          "Healer5",
+          "Melee1",
+          "Melee2",
+          "Melee3",
+          "Melee4",
+          "Melee5",
+          "Melee6",
+          "Ranged1",
+          "Ranged2",
+          "Ranged3",
+          "Ranged4",
+          "Ranged5",
+          "Ranged6",
+          "Ranged7",
+        ];
+        const roles = [
+          "tank",
+          "tank",
+          "healer",
+          "healer",
+          "healer",
+          "healer",
+          "healer",
+          "melee",
+          "melee",
+          "melee",
+          "melee",
+          "melee",
+          "melee",
+          "ranged",
+          "ranged",
+          "ranged",
+          "ranged",
+          "ranged",
+          "ranged",
+          "ranged",
+        ];
+        for (let i = 0; i < 20; i++)
+          roster.push({
+            id: nextId++,
+            name: names[i],
+            role: roles[i],
+            isCrystal: false,
+            isCrystalP15: false,
+          });
+        updateUI();
+        refreshAllocationAndDraw();
+      }
+
+      function showHighResView() {
+        const bigWidth = 1600;
+        const bigHeight = 1200;
+        const offCanvas = document.createElement("canvas");
+        offCanvas.width = bigWidth;
+        offCanvas.height = bigHeight;
+        const offCtx = offCanvas.getContext("2d");
+        const slots = positionSlots[currentPhase];
+        drawCanvasToContext(
+          offCtx,
+          bigWidth,
+          bigHeight,
+          currentPhase,
+          currentAllocation,
+          slots,
+          showCoords,
+        );
+        const dataURL = offCanvas.toDataURL("image/png");
+        const modal = document.getElementById("imageModal");
+        const fullImg = document.getElementById("fullImage");
+        fullImg.src = dataURL;
+        modal.style.display = "block";
+      }
+
+      // 关闭模态框
+      document.querySelector(".close-modal").addEventListener("click", () => {
+        document.getElementById("imageModal").style.display = "none";
+      });
+      window.addEventListener("click", (e) => {
+        const modal = document.getElementById("imageModal");
+        if (e.target === modal) modal.style.display = "none";
+      });
+
+      // 事件绑定
+      document.getElementById("addBtn").addEventListener("click", () => {
+        let name = document.getElementById("playerName").value.trim();
+        if (!name) {
+          alert("输入名字");
+          return;
+        }
+        let role = document.getElementById("playerRole").value;
+        roster.push({
+          id: nextId++,
+          name,
+          role,
+          isCrystal: false,
+          isCrystalP15: false,
+        });
+        document.getElementById("playerName").value = "";
+        updateUI();
+        refreshAllocationAndDraw();
+      });
+      document
+        .getElementById("applyAllocationBtn")
+        .addEventListener("click", () => refreshAllocationAndDraw());
+      document
+        .getElementById("phaseP15Btn")
+        .addEventListener("click", () => setPhase("p1_5"));
+      document
+        .getElementById("phaseP2ShareBtn")
+        .addEventListener("click", () => setPhase("p2_share"));
+      document
+        .getElementById("phaseP2DisperseBtn")
+        .addEventListener("click", () => setPhase("p2_disperse"));
+      document
+        .getElementById("exportSlotsBtn")
+        .addEventListener("click", exportSlots);
+      document
+        .getElementById("uploadBgBtn")
+        .addEventListener("click", uploadBackground);
+      document
+        .getElementById("clearBgBtn")
+        .addEventListener("click", clearBackground);
+      document
+        .getElementById("toggleCoordsBtn")
+        .addEventListener("click", () => {
+          showCoords = !showCoords;
+          refreshAllocationAndDraw();
+        });
+      document
+        .getElementById("balanceMeleeBtn")
+        .addEventListener("click", balanceMeleeForP2);
+      document
+        .getElementById("zoomViewBtn")
+        .addEventListener("click", showHighResView);
+
+      loadStoredBackground();
+      initDemoRoster();
+    </script>
+  </body>
+</html>
